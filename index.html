@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waleed Ahmed Javaid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #111827;
+    --accent: #2563EB;
+    --light: #F9FAFB;
+    --white: #FFFFFF;
+    --muted: #6B7280;
+    --border: rgba(17,24,39,0.08);
+    --text: #1F2937;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(249,250,251,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; color: var(--navy); letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted);
+    font-size: 0.85rem; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    padding: 8rem 2.5rem 5rem;
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  .hero-left { }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.5s ease both;
+  }
+  .eyebrow-line { width: 24px; height: 1px; background: var(--muted); }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--navy);
+    animation: fadeUp 0.5s 0.1s ease both;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1rem; color: var(--muted); line-height: 1.75;
+    animation: fadeUp 0.5s 0.2s ease both;
+  }
+
+  .hero-actions {
+    margin-top: 2.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;
+    animation: fadeUp 0.5s 0.3s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--navy); color: #fff;
+    padding: 0.75rem 1.5rem; border-radius: 6px;
+    text-decoration: none; font-weight: 500; font-size: 0.88rem;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    border: 1px solid var(--border); color: var(--navy);
+    padding: 0.75rem 1.5rem; border-radius: 6px;
+    text-decoration: none; font-weight: 500; font-size: 0.88rem;
+    transition: border-color 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(17,24,39,0.25); }
+
+  /* PHOTO PLACEHOLDER */
+  .hero-photo {
+    animation: fadeUp 0.5s 0.15s ease both;
+    display: flex; justify-content: center;
+  }
+  .photo-frame {
+    width: 300px; height: 360px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .photo-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 2.5rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    color: var(--navy); letter-spacing: -0.02em; line-height: 1.15;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  #about { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; }
+  .skill-tag {
+    background: var(--light); border: 1px solid var(--border);
+    color: var(--text); font-size: 0.78rem; font-weight: 400;
+    padding: 0.35rem 0.85rem; border-radius: 4px;
+  }
+  .info-card {
+    background: var(--light); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .info-card h3 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.6rem; font-weight: 500; }
+  .info-card p { font-size: 0.88rem; color: var(--text); line-height: 1.6; }
+  .info-card .degree { font-weight: 500; color: var(--navy); }
+  .info-card .uni { color: var(--muted); font-size: 0.82rem; margin-top: 0.2rem; }
+
+  /* PROJECTS */
+  #projects { background: var(--light); }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .project-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: rgba(17,24,39,0.2); }
+  .project-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.85rem; color: var(--muted);
+    margin-bottom: 1.25rem; display: block;
+  }
+  .project-card h3 { font-size: 0.95rem; font-weight: 500; color: var(--navy); margin-bottom: 0.6rem; }
+  .project-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.1rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .project-tag {
+    font-size: 0.7rem; font-weight: 500;
+    background: var(--light); color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem; border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .skills-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+  .skill-category h3 {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin-bottom: 1rem; font-weight: 500;
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+  }
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: 0.875rem; color: var(--text);
+    padding: 0.45rem 0; border-bottom: 1px solid var(--border);
+  }
+  .skill-list li:last-child { border-bottom: none; }
+
+  /* CONTACT */
+  #contact { background: var(--navy); }
+  #contact .section-label { color: rgba(255,255,255,0.4); }
+  #contact .section-title { color: #fff; margin-bottom: 1rem; }
+  .contact-sub { color: rgba(255,255,255,0.5); font-size: 0.95rem; margin-bottom: 2.5rem; max-width: 420px; line-height: 1.7; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; max-width: 400px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1.25rem;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 1rem 1.25rem;
+    text-decoration: none; color: #fff;
+    transition: background 0.2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.08); }
+  .contact-link-icon {
+    width: 36px; height: 36px; border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-link-icon svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 1.5; }
+  .contact-link-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-bottom: 0.1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .contact-link-value { font-size: 0.88rem; font-weight: 400; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.25rem 4rem; gap: 3rem; }
+    .hero-photo { order: -1; }
+    .photo-frame { width: 100%; height: 260px; }
+    .about-grid, .projects-grid, .skills-columns { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.25rem; }
+    footer { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Waleed Ahmed Javaid</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      CS Student · Karachi
+    </div>
+    <h1>Waleed Ahmed<br><em>Javaid</em></h1>
+    <p class="hero-sub">Computer Science undergraduate at FAST-NUCES with a strong foundation in software development, databases, and client communication. Looking for opportunities in customer support and software roles.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="#projects" class="btn-ghost">View projects</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="photo-frame">
+      <img src="Waleed.jpg" alt="Waleed Ahmed Javaid">
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="section-label">About</p>
+        <h2 class="section-title" style="margin-bottom: 1.5rem;">Motivated, adaptable, and always learning</h2>
+        <p>I'm a Computer Science student at FAST National University with a solid foundation in programming, databases, and software engineering principles.</p>
+        <p>I'm drawn to customer-facing and client service roles — I believe technology works best when paired with empathy, clear communication, and a genuine desire to help people.</p>
+        <div class="skills-grid">
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Database Design</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Team Collaboration</span>
+          <span class="skill-tag">Customer Support</span>
+          <span class="skill-tag">Microsoft Office</span>
+          <span class="skill-tag">Active Listening</span>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.1s;">
+        <div class="info-card">
+          <h3>Education</h3>
+          <p class="degree">B.S. Computer Science</p>
+          <p class="uni">FAST National University of Computer and Emerging Sciences</p>
+          <p class="uni">Karachi, Pakistan · Expected 2028</p>
+        </div>
+        <div class="info-card">
+          <h3>Location</h3>
+          <p>Karachi, Pakistan</p>
+        </div>
+        <div class="info-card">
+          <h3>Languages</h3>
+          <p>English — Fluent &nbsp;&middot;&nbsp; Urdu — Native</p>
+        </div>
+        <div class="info-card">
+          <h3>Availability</h3>
+          <p>Open to customer service, client support & internship roles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label reveal">Projects</p>
+    <h2 class="section-title reveal">Selected work</h2>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <span class="project-num">01</span>
+        <h3>Student Management System</h3>
+        <p>A console-based C++ application for managing student records with full CRUD operations built using object-oriented programming principles.</p>
+        <div class="project-tags">
+          <span class="project-tag">C++</span>
+          <span class="project-tag">OOP</span>
+          <span class="project-tag">Data Management</span>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay: 0.05s;">
+        <span class="project-num">02</span>
+        <h3>Library Management System</h3>
+        <p>A system to organise and maintain library records with efficient data handling, search operations, and a focus on real user requirements.</p>
+        <div class="project-tags">
+          <span class="project-tag">C++</span>
+          <span class="project-tag">Software Design</span>
+          <span class="project-tag">File Handling</span>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay: 0.1s;">
+        <span class="project-num">03</span>
+        <h3>Database Management Project</h3>
+        <p>Designed and implemented relational database structures in SQL with queries for retrieval, modification, and reporting — focused on data accuracy.</p>
+        <div class="project-tags">
+          <span class="project-tag">SQL</span>
+          <span class="project-tag">Relational DB</span>
+          <span class="project-tag">Query Design</span>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay: 0.15s;">
+        <span class="project-num">04</span>
+        <h3>Software Engineering Team Project</h3>
+        <p>Collaborated with a team to gather requirements, develop a software solution, and manage planning, testing, and documentation end to end.</p>
+        <div class="project-tags">
+          <span class="project-tag">Team Collaboration</span>
+          <span class="project-tag">Agile</span>
+          <span class="project-tag">Documentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label reveal">Capabilities</p>
+    <h2 class="section-title reveal">Skills & expertise</h2>
+    <div class="skills-columns">
+      <div class="skill-category reveal">
+        <h3>Technical</h3>
+        <ul class="skill-list">
+          <li>C++ Programming</li>
+          <li>SQL & Database Design</li>
+          <li>OOP Concepts</li>
+          <li>Data Structures</li>
+          <li>Software Engineering</li>
+          <li>Microsoft Office Suite</li>
+        </ul>
+      </div>
+      <div class="skill-category reveal" style="transition-delay: 0.08s;">
+        <h3>Customer Service</h3>
+        <ul class="skill-list">
+          <li>Customer Support</li>
+          <li>Active Listening</li>
+          <li>Conflict Resolution</li>
+          <li>Phone & Chat Etiquette</li>
+          <li>Attention to Detail</li>
+          <li>Multitasking</li>
+        </ul>
+      </div>
+      <div class="skill-category reveal" style="transition-delay: 0.16s;">
+        <h3>Professional</h3>
+        <ul class="skill-list">
+          <li>Team Collaboration</li>
+          <li>Time Management</li>
+          <li>Problem Solving</li>
+          <li>Adaptability</li>
+          <li>Written & Verbal Communication</li>
+          <li>Project Coordination</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's connect</h2>
+    <p class="contact-sub">I'm actively looking for opportunities in customer support, client services, and software roles. Feel free to reach out.</p>
+    <div class="contact-links">
+      <a href="mailto:waleedahmed2706@gmail.com" class="contact-link">
+        <span class="contact-link-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        </span>
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">waleedahmed2706@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/waleed-ahmed-javaid" target="_blank" class="contact-link">
+        <span class="contact-link-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+        </span>
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-value">linkedin.com/in/waleed-ahmed-javaid</div>
+        </div>
+      </a>
+      <a href="tel:+923711031318" class="contact-link">
+        <span class="contact-link-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        </span>
+        <div>
+          <div class="contact-link-label">Phone</div>
+          <div class="contact-link-value">+92 371 1031318</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Waleed Ahmed Javaid · Karachi, Pakistan</p>
+  <p>2025</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
